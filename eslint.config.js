@@ -27,7 +27,7 @@ export default [
     ],
   },
 
-  ...pluginVue.configs['flat/essential'],
+  ...pluginVue.configs['flat/recommended'],
   ...vueTsEslintConfig(),
   {
     rules: {
