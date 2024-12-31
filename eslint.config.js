@@ -32,6 +32,7 @@ export default [
   {
     rules: {
       'vue/multi-word-component-names': 'off',
+      'vue/max-attributes-per-line': 'off',
       indent: ['error', 2], // 缩进使用 2 个空格
       'linebreak-style': ['error', 'unix'], // 使用 Unix 风格的换行符
       quotes: ['error', 'single'], // 使用单引号

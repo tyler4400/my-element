@@ -38,6 +38,6 @@ defineExpose({
   </button>
 </template>
 
-<style scoped>
-
+<style>
+@import 'style.css';
 </style>

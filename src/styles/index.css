@@ -1,0 +1,6 @@
+@import "./vars.css";
+@import "./reset.css";
+
+:root {
+  --main-bg-color: #007bff;
+}
