@@ -15,23 +15,68 @@ const handClick = () => {
   }
   collapseContext?.handleItemClick(name)
 }
+
+const transitionEvents: Record<string, (el: HTMLElement) => void> = {
+  beforeEnter(el) {
+    el.style.height = '0px'
+    el.style.overflow = 'hidden'
+  },
+  enter(el) {
+    el.style.height = `${el.scrollHeight}px`
+  },
+  afterEnter(el) {
+    el.style.height = ''
+    el.style.overflow = ''
+  },
+  beforeLeave(el) {
+    el.style.height = `${el.scrollHeight}px`
+    el.style.overflow = 'hidden'
+  },
+  leave(el) {
+    el.style.height = '0px'
+  },
+  afterLeave(el) {
+    el.style.height = ''
+    el.style.overflow = ''
+  }
+
+}
 </script>
 
 <template>
   <div
     class="vk-collapse-item"
-    :class="{ 'is-disabled': disabled, 'is-active': isActive }"
+    :class="{ 'is-disabled': disabled }"
     @click="handClick"
   >
-    <div :id="`item-header-${name}`" class="vk-collapse-item__header">
+    <div
+      :id="`item-header-${name}`"
+      class="vk-collapse-item__header"
+      :class="{
+        'is-disabled': disabled,
+        'is-active': isActive
+      }"
+    >
       <slot name="title">{{ title }}</slot>
     </div>
-    <div v-show="isActive" :id="`item-content-${name}`" class="vk-collapse-item__content">
-      <slot />
-    </div>
+    <Transition name="slide" v-on="transitionEvents">
+      <div v-show="isActive" class="vk-collapse-item__wrapper">
+        <div :id="`item-content-${name}`" class="vk-collapse-item__content">
+          <slot />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <style scoped>
-
+/*.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}*/
 </style>

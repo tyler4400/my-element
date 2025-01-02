@@ -5,7 +5,8 @@ import { CollapseContextKey, type CollapseEmites, type CollapseProps, type NameT
 defineOptions({
   name: 'VKCollapse',
 })
-const { accordion } = withDefaults(defineProps<CollapseProps>(), { accordion: false, modelValue: () => [] })
+// 注意 withDefaults解构会丢失响应性
+const props = withDefaults(defineProps<CollapseProps>(), { accordion: false, modelValue: () => [] })
 const emits = defineEmits<CollapseEmites>()
 
 // const activeNames = ref<NameType[]>(modelValue)
@@ -24,7 +25,7 @@ const emits = defineEmits<CollapseEmites>()
 // 3.4之后可以使用defineModal
 const modelValue = defineModel<CollapseProps['modelValue']>({ default: [] })
 const handleItemClick = (itemName: NameType): void => {
-  if (accordion) {
+  if (props.accordion) {
     modelValue.value = [itemName === modelValue.value[0] ? '' : itemName]
   } else {
     const index = modelValue.value.indexOf(itemName)
@@ -39,7 +40,7 @@ const handleItemClick = (itemName: NameType): void => {
 }
 
 
-if (accordion && modelValue.value.length > 1) {
+if (props.accordion && modelValue.value.length > 1) {
   console.warn('accordion mode should only have one acitve item')
 }
 

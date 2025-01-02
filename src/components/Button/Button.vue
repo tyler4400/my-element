@@ -37,7 +37,3 @@ defineExpose({
     <slot />
   </button>
 </template>
-
-<style>
-@import 'style.css';
-</style>

@@ -18,6 +18,11 @@ onMounted(() => {
     CollapseModel.value = ['b']
   }, 1000)
 })
+const accordion = ref(false)
+const toggleAccordion = () => {
+  accordion.value = !accordion.value
+  CollapseModel.value = []
+}
 
 </script>
 
@@ -52,8 +57,9 @@ onMounted(() => {
       <Button size="large" icon="arrow-up">Icon</Button><br><br>
     </div>
     <div>
-      <h1>Collapse组件:</h1>
-      <Collapse v-model="CollapseModel" :accordion="true" @change="values => console.log('Collapse:change', values)">
+      <h1>Collapse组件: <span @click="toggleAccordion">点此切换手风琴开关 {{ accordion }}</span></h1>
+      <p>CollapseModel: {{ CollapseModel }}</p>
+      <Collapse v-model="CollapseModel" :accordion="accordion" @change="values => console.log('Collapse:change', values)">
         <Item name="a">
           <template #title>
             Template title A
@@ -68,7 +74,6 @@ onMounted(() => {
           <div> this is cccc test </div>
         </Item>
       </Collapse>
-      <p>CollapseModel: {{ CollapseModel }}</p>
     </div>
   </main>
 </template>

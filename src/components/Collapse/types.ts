@@ -8,7 +8,7 @@ export type NameType = string | number
 
 export interface CollapseProps {
 	modelValue: NameType[];
-	accordion?: boolean;
+	accordion?: boolean; // 手风琴
 }
 
 export interface CollapseItemProps {
@@ -23,3 +23,8 @@ export interface CollapseContext {
 }
 
 export const CollapseContextKey: InjectionKey<CollapseContext> = Symbol('CollapseContextKey')
+
+export interface CollapseEmites {
+	(e: 'update:modelValue', values: NameType[]): void;
+	(e: 'change', values: NameType[]): void;
+}
