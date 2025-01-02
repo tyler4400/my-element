@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { CollapseContextKey, type CollapseItemProps } from '@/components/Collapse/types.ts'
 import { computed, inject } from 'vue'
+import Icon from '@/components/Icon/Icon.vue'
 
 defineOptions({
   name: 'VKCollapseItem',
@@ -58,6 +59,7 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
       }"
     >
       <slot name="title">{{ title }}</slot>
+      <Icon icon="angle-right" class="header-angle" />
     </div>
     <Transition name="slide" v-on="transitionEvents">
       <div v-show="isActive" class="vk-collapse-item__wrapper">

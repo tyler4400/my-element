@@ -11,7 +11,7 @@ export interface ButtonProps {
 	disabled?: boolean;
 	nativeType?: NativeType;
 	autofocus?: boolean;
-	icon?: string; // todo 等Icon组件完成之后再回来做
+	icon?: string;
 	loading?: boolean;
 }
 

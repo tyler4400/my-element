@@ -52,7 +52,7 @@ const toggleAccordion = () => {
       size: <Button size="large">Large</Button>
       <Button size="small">Small</Button><br><br>
       other things: <Button size="large" loading>large Loading</Button>
-      <Button size="large" icon="arrow-up">Icon</Button><br><br>
+      <Button size="small" icon="star">Icon</Button><br><br>
     </div>
     <div>
       <h1>Collapse组件: <span @click="toggleAccordion">点此切换手风琴开关 {{ accordion }}</span></h1>

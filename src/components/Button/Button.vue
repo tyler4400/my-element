@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ButtonProps } from './types.ts'
 import { ref } from 'vue'
+import Icon from '@/components/Icon/Icon.vue'
 
 defineOptions({
   name: 'VKButton',
@@ -34,6 +35,8 @@ defineExpose({
     :autofocus="autofocus"
     :type="nativeType"
   >
-    <slot />
+    <Icon v-if="loading" icon="spinner" spin />
+    <Icon v-if="icon" :icon="icon" />
+    <span><slot /></span>
   </button>
 </template>
