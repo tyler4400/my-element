@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
 import Button from '@/components/Button/Button.vue'
 import { onMounted, ref } from 'vue'
 import type { ButtonInstance } from '@/components/Button/types.ts'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import Item from '@/components/Collapse/CollapseItem.vue'
+import Icon from '@/components/Icon/Icon.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -28,9 +28,7 @@ const toggleAccordion = () => {
 
 <template>
   <header>
-    <div class="wrapper">
-      <HelloWorld msg="组件展示" />
-    </div>
+    <h1>组件展示</h1>
   </header>
 
   <main>
@@ -75,8 +73,11 @@ const toggleAccordion = () => {
         </Item>
       </Collapse>
     </div>
-
-    <font-awesome-icon icon="arrow-up" />
+    <div>
+      <h1>Icon组件</h1>
+      <Icon icon="arrow-up" type="primary" />
+      <Icon icon="user" size="2xl" type="danger" color="#0e7a0d" />
+    </div>
   </main>
 </template>
 

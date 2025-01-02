@@ -1,0 +1,26 @@
+.vk-icon {
+  --vk-icon-color: inherit;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--vk-icon-color);
+  font-size: inherit;
+}
+
+.vk-icon--primary {
+  --vk-icon-color: var(--vk-color-primary);
+}
+.vk-icon--info {
+  --vk-icon-color: var(--vk-color-info);
+}
+.vk-icon--success {
+  --vk-icon-color: var(--vk-color-success);
+}
+.vk-icon--warning {
+  --vk-icon-color: var(--vk-color-warning);
+}
+.vk-icon--danger {
+  --vk-icon-color: var(--vk-color-danger);
+}

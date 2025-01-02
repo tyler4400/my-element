@@ -2,7 +2,4 @@
 @import "./reset.css";
 @import "@/components/Button/style.css";
 @import "@/components/Collapse/style.css";
-
-:root {
-  --main-bg-color: #007bff;
-}
+@import "@/components/Icon/style.css";
