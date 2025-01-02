@@ -1,22 +1,50 @@
 <script setup lang="ts">
-import { provide, ref } from 'vue'
-import { CollapseContextKey, type NameType } from '@/components/Collapse/types.ts'
+import { provide } from 'vue'
+import { CollapseContextKey, type CollapseEmites, type CollapseProps, type NameType } from '@/components/Collapse/types.ts'
 
 defineOptions({
   name: 'VKCollapse',
 })
-const activeNames = ref<NameType[]>([])
-const handleItemClick = (itemName: NameType): void => {
-  const index = activeNames.value.indexOf(itemName)
-  if (index >= 0) {
-    activeNames.value.splice(index, 1)
-  } else {
-    activeNames.value.push(itemName)
-  }
+const { accordion } = withDefaults(defineProps<CollapseProps>(), { accordion: false, modelValue: () => [] })
+const emits = defineEmits<CollapseEmites>()
 
+// const activeNames = ref<NameType[]>(modelValue)
+// const handleItemClick = (itemName: NameType): void => {
+//   const index = activeNames.value.indexOf(itemName)
+//   if (index >= 0) {
+//     activeNames.value.splice(index, 1)
+//   } else {
+//     activeNames.value.push(itemName)
+//   }
+//   emits('update:modelValue', activeNames.value)
+//   emits('change', activeNames.value)
+// }
+
+
+// 3.4之后可以使用defineModal
+const modelValue = defineModel<CollapseProps['modelValue']>({ default: [] })
+const handleItemClick = (itemName: NameType): void => {
+  if (accordion) {
+    modelValue.value = [itemName === modelValue.value[0] ? '' : itemName]
+  } else {
+    const index = modelValue.value.indexOf(itemName)
+    if (index >= 0) {
+      modelValue.value.splice(index, 1)
+    } else {
+      modelValue.value.push(itemName)
+    }
+    // emits('update:modelValue', activeNames.value)
+    emits('change', modelValue.value)
+  }
 }
 
-provide(CollapseContextKey, { activeNames, handleItemClick })
+
+if (accordion && modelValue.value.length > 1) {
+  console.warn('accordion mode should only have one acitve item')
+}
+
+// provide(CollapseContextKey, { activeNames, handleItemClick })
+provide(CollapseContextKey, { activeNames: modelValue, handleItemClick })
 </script>
 
 <template>

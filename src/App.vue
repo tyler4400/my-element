@@ -9,6 +9,14 @@ import Item from '@/components/Collapse/CollapseItem.vue'
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
   console.log('buttonRef', buttonRef.value?.ref)
+
+})
+
+const CollapseModel = ref(['a'])
+onMounted(() => {
+  setTimeout(() => {
+    CollapseModel.value = ['b']
+  }, 1000)
 })
 
 </script>
@@ -45,7 +53,7 @@ onMounted(() => {
     </div>
     <div>
       <h1>Collapse组件:</h1>
-      <Collapse>
+      <Collapse v-model="CollapseModel" :accordion="true" @change="values => console.log('Collapse:change', values)">
         <Item name="a">
           <template #title>
             Template title A
@@ -60,6 +68,7 @@ onMounted(() => {
           <div> this is cccc test </div>
         </Item>
       </Collapse>
+      <p>CollapseModel: {{ CollapseModel }}</p>
     </div>
   </main>
 </template>
