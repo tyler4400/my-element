@@ -75,6 +75,8 @@ const toggleAccordion = () => {
         </Item>
       </Collapse>
     </div>
+
+    <font-awesome-icon icon="arrow-up" />
   </main>
 </template>
 
