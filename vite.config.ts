@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
@@ -19,4 +20,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  test: { // 这里是test报错是读取不到其类型， 因为没有使用vitest的类型，要么就创建个vitest.config.ts,这里我懒了就忽略错误吧
+    globals: true,
+    environment: 'jsdom'
+  }
 })
