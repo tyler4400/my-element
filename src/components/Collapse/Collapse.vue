@@ -35,7 +35,7 @@ const handleItemClick = (itemName: NameType): void => {
       modelValue.value.push(itemName)
     }
     // emits('update:modelValue', activeNames.value)
-    emits('change', modelValue.value)
+    emits('change', [...modelValue.value])
   }
 }
 
