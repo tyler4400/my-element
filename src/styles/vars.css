@@ -60,6 +60,9 @@
   --vk-fill-color-darker: #e6e8eb;
   --vk-fill-color-blank: #ffffff;
 
+  /* box */
+  --vk-box-shadow-light: #e4e7ed;
+
   /* border */
   --vk-border-width: 1px;
   --vk-border-style: solid;

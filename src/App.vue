@@ -91,13 +91,13 @@ onMounted(() => {
     </div>
     <div>
       <h1>Tooltip组件</h1>
-      <Tooltip :trigger="tooltipTrigger">
+      <Tooltip :trigger="tooltipTrigger" placement="top-start">
         Tooltip触发器 hover2s后变click
         <template #content>
           <Button type="primary">Primary</Button>
         </template>
       </Tooltip>
-      <Tooltip content="hello~" trigger="hover">
+      <Tooltip content="hello~" trigger="hover" placement="right-end">
         Tooltip触发器 hover
       </Tooltip>
     </div>

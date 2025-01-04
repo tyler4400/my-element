@@ -6,8 +6,8 @@ export interface TooltipProps {
   // manual?: boolean; // 不同于视频里，这里不加， 只接通过trigger参数为空即可
   // popperOptions?: Partial<Options>;
   transition?: string;
-  openDelay?: number;
-  closeDelay?: number;
+  openDelay?: number; // todo 暂时不加
+  closeDelay?: number; // todo 暂时不加
 }
 
 export interface TooltipEmits {
