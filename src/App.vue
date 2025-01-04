@@ -5,6 +5,10 @@ import type { ButtonInstance } from '@/components/Button/types.ts'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import Item from '@/components/Collapse/CollapseItem.vue'
 import Icon from '@/components/Icon/Icon.vue'
+// import Popperjs from '@/example/Popperjs.vue'
+// import FloatUI from '@/example/FloatUI.vue'
+import Tooltip from '@/components/Tooltip/Tooltip.vue'
+import type { TooltipProps } from '@/components/Tooltip/types.ts'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -16,13 +20,20 @@ const CollapseModel = ref(['a'])
 onMounted(() => {
   setTimeout(() => {
     CollapseModel.value = ['b']
-  }, 1000)
+  }, 2000)
 })
 const accordion = ref(false)
 const toggleAccordion = () => {
   accordion.value = !accordion.value
   CollapseModel.value = []
 }
+
+const tooltipTrigger = ref<TooltipProps['trigger']>('hover')
+onMounted(() => {
+  setTimeout(() => {
+    tooltipTrigger.value = 'click'
+  }, 2000)
+})
 
 </script>
 
@@ -77,6 +88,22 @@ const toggleAccordion = () => {
       <h1>Icon组件</h1>
       <Icon icon="arrow-up" type="primary" />
       <Icon icon="user" size="2xl" type="danger" color="#0e7a0d" />
+    </div>
+    <div>
+      <h1>Tooltip组件</h1>
+      <Tooltip :trigger="tooltipTrigger">
+        Tooltip触发器 hover2s后变click
+        <template #content>
+          <Button type="primary">Primary</Button>
+        </template>
+      </Tooltip>
+      <Tooltip content="hello~" trigger="hover">
+        Tooltip触发器 hover
+      </Tooltip>
+    </div>
+    <div>
+      <!--      <Popperjs />-->
+      <!--      <FloatUI />-->
     </div>
   </main>
 </template>

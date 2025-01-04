@@ -31,6 +31,7 @@ export default [
   ...vueTsEslintConfig(),
   {
     rules: {
+      '@typescript-eslint/no-unsafe-function-type': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/max-attributes-per-line': 'off',
       'vue/singleline-html-element-content-newline': 'off',

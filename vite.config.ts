@@ -13,7 +13,12 @@ export default defineConfig({
     vue(),
     vueJsx(),
     vueDevTools(),
-    eslint(),
+    eslint({
+      failOnError: false,
+      failOnWarning: false,
+      emitWarning: true,
+      emitError: true,
+    }),
   ],
   resolve: {
     alias: {
