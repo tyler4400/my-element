@@ -7,6 +7,7 @@ const useClickOutside = (elementRef: Ref<undefined | HTMLElement>, callback: (e:
 	    callback(e)
     }
   }
+
   onMounted(() => {
     document.addEventListener('click', handler)
   })
