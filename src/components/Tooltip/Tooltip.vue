@@ -1,4 +1,7 @@
 <script setup lang="ts">
+/**
+ * arrow 的方向有问题， 还未解决
+ */
 import type { TooltipEmits, TooltipInstance, TooltipProps } from '@/components/Tooltip/types.ts'
 import { computed, reactive, ref, watch } from 'vue'
 import useClickOutside from '@/hooks/useClickOutside.ts'
@@ -11,30 +14,26 @@ const triggerNode = ref<HTMLElement>()
 const popperContainerNode = ref<HTMLElement>()
 
 const isOpen = ref(false)
-const setOpen = (open: boolean) => {
-  isOpen.value = open
-  emits('visible-change', open)
+const setOpen = (open?: boolean) => {
+  isOpen.value = open ? open : !isOpen.value
+  emits('visible-change', isOpen.value)
 }
 
 let events: Partial<Record<string, Function>> = reactive({})
+let outerEvents: Partial<Record<string, Function>> = reactive({})
 watch(() => trigger, (newTrigger) => {
   events = {}
+  outerEvents = {}
   if (newTrigger === 'hover') {
     events['mouseenter'] = () => setOpen(true)
-    events['mouseleave'] = () => setOpen(false)
+    outerEvents['mouseleave'] = () => setOpen(false)
   }
   if (newTrigger === 'click') {
-    events['click'] = (e: MouseEvent) => {
-      if (isOpen.value) {
-        if (!popperNode?.value?.contains?.(e.target as HTMLElement)) { // 弹出层打开时， 点击内部会被忽略，不会关闭
-          setOpen(false)
-        }
-      } else {
-        setOpen(true)
-      }
+    events['click'] = () => {
+      setOpen()
     }
   }
-}, { immediate: true })
+}, { immediate: true, flush: 'sync' })
 
 useClickOutside(popperContainerNode, () => {
   if (trigger === 'click' && isOpen.value) {
@@ -58,8 +57,16 @@ defineExpose<TooltipInstance>({
 </script>
 
 <template>
-  <div ref="popperContainerNode" class="vk-tooltip" v-on="events">
-    <div ref="triggerNode" class="vk-tooltip__trigger">
+  <div
+    ref="popperContainerNode"
+    class="vk-tooltip"
+    v-on="outerEvents"
+  >
+    <div
+      ref="triggerNode"
+      class="vk-tooltip__trigger"
+      v-on="events"
+    >
       <slot />
     </div>
     <Transition :name="transition">

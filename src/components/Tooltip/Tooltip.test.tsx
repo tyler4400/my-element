@@ -11,7 +11,7 @@ describe('Tooltip.vue', () => {
     const wrapper = mount(() =>
       <div>
         <div id="outside"></div>
-        <Tooltip content="hello tooltip" trigger='click' onVisibleChange={onVisibleChange}>
+        <Tooltip content="hello tooltip" trigger='click' onVisible-change={onVisibleChange}>
           <button id="trigger">Trigger</button>
         </Tooltip>
       </div>
