@@ -12,6 +12,7 @@ import type { TooltipProps } from '@/components/Tooltip/types.ts'
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
 import DropdownTSX from '@/components/Dropdown/Dropdown.tsx'
 import type { MenuOption } from '@/components/Dropdown/types.ts'
+import Message from '@/components/Message/Message.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -141,6 +142,10 @@ const options: MenuOption[] = [
           <div>tsx实现Dropdown</div>
         </DropdownTSX>
       </div>
+    </li>
+    <li>
+      <h1>Message组件</h1>
+      <Message message="信息展示" :duration="0" show-close />
     </li>
   </ul>
 </template>
