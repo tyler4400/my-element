@@ -10,6 +10,7 @@ import Icon from '@/components/Icon/Icon.vue'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipProps } from '@/components/Tooltip/types.ts'
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
+import DropdownTSX from '@/components/Dropdown/Dropdown.tsx'
 import type { MenuOption } from '@/components/Dropdown/types.ts'
 
 const buttonRef = ref<ButtonInstance | null>(null)
@@ -38,7 +39,7 @@ onMounted(() => {
 })
 
 const options: MenuOption[] = [
-  { key: 1, label: h('span', [h(Icon,{ icon: 'user'}), ' hello']) },
+  { key: 1, label: h('span', [h(Icon,{ icon: 'house'}), ' home']) },
   { key: 2, label: 'item2', disabled: true },
   { key: 3, label: 'item3', divided: true },
   { key: 4, label: 'item4' }
@@ -128,6 +129,18 @@ const options: MenuOption[] = [
       >
         <div>打开弹出菜单</div>
       </Dropdown>
+      <div>
+        <DropdownTSX
+          ref="tooltipRef"
+          placement="bottom-end"
+          trigger="click"
+          :menu-options="options"
+          @visible-change="e => console.log('visible change', e)"
+          @select="e => console.log('select', e)"
+        >
+          <div>tsx实现Dropdown</div>
+        </DropdownTSX>
+      </div>
     </li>
   </ul>
 </template>
