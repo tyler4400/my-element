@@ -12,7 +12,8 @@ import type { TooltipProps } from '@/components/Tooltip/types.ts'
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
 import DropdownTSX from '@/components/Dropdown/Dropdown.tsx'
 import type { MenuOption } from '@/components/Dropdown/types.ts'
-import Message from '@/components/Message/Message.vue'
+// import Message from '@/components/Message/Message.vue'
+import { createMessage } from '@/components/Message/message.ts'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -45,6 +46,12 @@ const options: MenuOption[] = [
   { key: 3, label: 'item3', divided: true },
   { key: 4, label: 'item4' }
 ]
+
+const createMsg = () => {
+  createMessage({ message: 'msg1', offset: 10 })
+  createMessage({ message: 'msg2', offset: 20 })
+  createMessage({ message: 'msg3 not gone', duration: 0, showClose: true, offset: 30 })
+}
 
 </script>
 
@@ -145,7 +152,8 @@ const options: MenuOption[] = [
     </li>
     <li>
       <h1>Message组件</h1>
-      <Message message="信息展示" :duration="0" show-close />
+<!--      <Message message="信息展示" :duration="0" show-close />-->
+      <Button @click="createMsg">通过函数创建message</Button>
     </li>
   </ul>
 </template>

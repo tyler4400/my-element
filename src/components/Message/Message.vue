@@ -2,11 +2,23 @@
 import RenderVnode from '@/utils/RenderVnode.ts'
 import type { MessageProps } from '@/components/Message/types.ts'
 import Icon from '@/components/Icon/Icon.vue'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { getLastInstance } from '@/components/Message/message.ts'
 
-const { type = 'info', message, duration = 3000, showClose = false } = defineProps<MessageProps>()
+const prevInstance = getLastInstance()
+console.log('prevInstance', prevInstance)
 
-const visible = ref<boolean>(false)
+const {
+  type = 'info',
+  message,
+  duration = 3000,
+  showClose = false,
+  destroy,
+  offset = 20, // 这里若是经过createMessage调用， 已经是计算好了总的top offset
+} = defineProps<MessageProps>()
+
+const visible = ref<boolean>(true)
+const messageRef = ref<HTMLDivElement>()
 
 let timer: NodeJS.Timeout
 const startTimer = () => {
@@ -19,17 +31,49 @@ const stopTimer = () => {
   clearTimeout(timer)
 }
 
+
+
+
 onMounted(() => {
   visible.value = true
   startTimer()
+})
+
+
+// 这个 div 的高度
+// const height = ref(0)
+// onMounted(async () => {
+//   await nextTick()
+//   height.value = messageRef.value!.getBoundingClientRect().height
+// })
+
+// const bottomOffset = computed(() => (height?.value ?? 0) + offset)
+const cssStyle = computed(() => ({
+  top: offset + 'px',
+}))
+
+watch(visible, () => {
+  if (!visible.value) {
+    destroy()
+  }
+})
+
+defineExpose({
+  // getBottomOffset: () => {
+  //   console.log('getBottomOffset', bottomOffset.value)
+  //   return bottomOffset.value
+  // },
+  visible,
 })
 </script>
 
 <template>
   <div
-    v-if="visible"
+    v-show="visible"
+    ref="messageRef"
     class="vk-message"
     :class="{ [`vk-message-${type}`]: type}"
+    :style="cssStyle"
     @mouseenter="startTimer"
     @mouseleave="stopTimer"
   >

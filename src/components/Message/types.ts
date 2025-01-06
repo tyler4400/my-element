@@ -4,17 +4,17 @@ export interface MessageProps {
   duration?: number;
   showClose?: boolean;
   type?: 'success'| 'info'| 'warning'| 'danger';
-  // onDestory: () => void;
+  destroy: () => void;
   // id: string;
   // zIndex: number;
-  offset?: number;
+  offset?: number; // createMessage 会动态传递此项
   transitionName?: string;
 }
 export interface MessageContext {
   id: string;
   vnode: VNode;
   vm: ComponentInternalInstance;
-  props: MessageProps;
-  destory: () => void;
+  // props: MessageProps;
+  destroy: () => void;
 }
-export type CreateMessageProps = Omit<MessageProps, 'onDestory' | 'id' | 'zIndex'>
+export type CreateMessageProps = Omit<MessageProps, 'destroy' | 'id' | 'zIndex'>
