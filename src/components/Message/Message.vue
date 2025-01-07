@@ -2,7 +2,7 @@
 import RenderVnode from '@/utils/RenderVnode.ts'
 import type { MessageProps } from '@/components/Message/types.ts'
 import Icon from '@/components/Icon/Icon.vue'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import useEventListener from '@/hooks/useEventListener.ts'
 
 const {
