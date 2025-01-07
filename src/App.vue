@@ -48,8 +48,8 @@ const options: MenuOption[] = [
 ]
 
 const createMsg = () => {
-  createMessage({ message: 'msg1', offset: 10 })
-  createMessage({ message: 'msg2', offset: 20 })
+  createMessage({ message: 'msg1', offset: 10, disableEsc: true })
+  // createMessage({ message: 'msg2', offset: 20 })
   createMessage({ message: 'msg3 not gone', duration: 0, showClose: true, offset: 30 })
 }
 

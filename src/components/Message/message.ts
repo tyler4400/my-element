@@ -1,9 +1,10 @@
-import { h, render } from 'vue'
+import { h, reactive, ref, render, shallowReactive, watch } from 'vue'
 import type { CreateMessageProps, MessageContext } from '@/components/Message/types.ts'
 import Message from '@/components/Message/Message.vue'
+import useZIndex from '@/hooks/useZIndex.ts'
 
 let seed = 0
-const messageInstances: MessageContext[] = []
+export const messageInstances = shallowReactive<MessageContext[]>([])
 
 export const createMessage = (props: CreateMessageProps) => {
   const id = `message_${seed++}`
@@ -16,12 +17,23 @@ export const createMessage = (props: CreateMessageProps) => {
       render(null, container)
     }
   }
+
+  const onClickClose = () => {
+    const index = messageInstances.findIndex(inst => inst.id === id)
+    if (index > -1) {
+      messageInstances.splice(index, 1)
+    }
+  }
+
+  const { nextZIndex } = useZIndex()
   const lastBottomOffset = getLastBottomOffset()
   const newProps = {
     ...props,
     id,
     offset: (props.offset || 20) + lastBottomOffset, //  加上上一个的bottomOffset
     destroy,
+    onClickClose,
+    zIndex: nextZIndex(),
   }
 
   /**
@@ -35,6 +47,10 @@ export const createMessage = (props: CreateMessageProps) => {
   render(node, container)
 
   document.body.appendChild(container.firstElementChild!) // 属性后面加感叹号是非空断言符号
+
+  watch(() => messageInstances.length, () => {
+    console.log('watch:messageInstances', messageInstances)
+  })
 
   const vm = node.component!
   const instance = {
@@ -58,7 +74,8 @@ export const getLastBottomOffset = () => {
   if (!ins) {
     return 0
   } else {
-    console.log('getLastBottomOffset:messageRef', (ins.vm.refs!.messageRef as HTMLElement).getBoundingClientRect())
-    return (ins.vm.refs!.messageRef as HTMLElement).getBoundingClientRect().bottom
+    console.log('getLastBottomOffset:messageRef', ins.vnode)
+    // ins.vnode.component!.props.message = 'adadw'
+    return ins.vnode.el!.getBoundingClientRect().bottom
   }
 }

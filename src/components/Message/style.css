@@ -1,0 +1,81 @@
+.vk-message {
+  --vk-message-bg-color: var(--vk-color-info-light-9);
+  --vk-message-border-color: var(--vk-border-color-lighter);
+  --vk-message-padding: 15px 19px;
+  --vk-message-close-size: 16px;
+  --vk-message-close-icon-color: var(--vk-text-color-placeholder);
+  --vk-message-close-hover-color: var(--vk-text-color-secondary);
+}
+.vk-message {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: var(--vk-border-radius-base);
+  border-width: var(--vk-border-width);
+  border-style: var(--vk-border-style);
+  border-color: var(--vk-message-border-color);
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: var(--vk-message-bg-color);
+  padding: var(--vk-message-padding);
+  display: flex;
+  align-items: center;
+  transition: top var(--vk-transition-duration), opacity var(--vk-transition-duration), transform var(--vk-transition-duration);
+  .vk-message__content {
+    color: var(--vk-message-text-color);
+    overflow-wrap: anywhere;
+  }
+  &.is-close .vk-message__content {
+    padding-right: 30px;
+  }
+  .vk-message__close {
+    display: flex;
+    align-items: center;
+  }
+  .vk-message__close svg {
+    cursor: pointer;
+  }
+}
+
+.vk-message--info {
+  --vk-message-bg-color: var(--vk-color-info-light-9);
+  --vk-message-border-color: var(--vk-color-info-light-8);
+  --vk-message-text-color: var(--vk-color-info);
+.vk-message__close {
+  --vk-icon-color: var(--vk-color-info);
+}
+}
+
+.vk-message--success {
+  --vk-message-bg-color: var(--vk-color-success-light-9);
+  --vk-message-border-color: var(--vk-color-success-light-8);
+  --vk-message-text-color: var(--vk-color-success);
+.vk-message__close {
+  --vk-icon-color: var(--vk-color-success);
+}
+}
+
+.vk-message--warning {
+  --vk-message-bg-color: var(--vk-color-warning-light-9);
+  --vk-message-border-color: var(--vk-color-warning-light-8);
+  --vk-message-text-color: var(--vk-color-warning);
+.vk-message__close {
+  --vk-icon-color: var(--vk-color-warning);
+}
+}
+
+.vk-message--danger {
+  --vk-message-bg-color: var(--vk-color-danger-light-9);
+  --vk-message-border-color: var(--vk-color-danger-light-8);
+  --vk-message-text-color: var(--vk-color-danger);
+.vk-message__close {
+  --vk-icon-color: var(--vk-color-danger);
+}
+}
+.vk-message.fade-up-enter-from,
+.vk-message.fade-up-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}
