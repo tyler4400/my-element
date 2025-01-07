@@ -37,6 +37,9 @@
   .vk-message__close svg {
     cursor: pointer;
   }
+  .vk-message__content + .vk-message__close {
+    margin-left: 6px;
+  }
 }
 
 .vk-message--info {
@@ -49,11 +52,11 @@
 }
 
 .vk-message--success {
-  --vk-message-bg-color: var(--vk-color-success-light-9);
+  --vk-message-bg-color: var(--vk-color-success);
   --vk-message-border-color: var(--vk-color-success-light-8);
-  --vk-message-text-color: var(--vk-color-success);
+  --vk-message-text-color: var(--vk-color-white);
 .vk-message__close {
-  --vk-icon-color: var(--vk-color-success);
+  --vk-icon-color: var(--vk-color-white);
 }
 }
 
@@ -67,11 +70,11 @@
 }
 
 .vk-message--danger {
-  --vk-message-bg-color: var(--vk-color-danger-light-9);
+  --vk-message-bg-color: var(--vk-color-danger);
   --vk-message-border-color: var(--vk-color-danger-light-8);
-  --vk-message-text-color: var(--vk-color-danger);
+  --vk-message-text-color: var(--vk-color-white);
 .vk-message__close {
-  --vk-icon-color: var(--vk-color-danger);
+  --vk-icon-color: var(--vk-color-white);
 }
 }
 .vk-message.fade-up-enter-from,

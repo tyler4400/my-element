@@ -12,8 +12,7 @@ import type { TooltipProps } from '@/components/Tooltip/types.ts'
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
 import DropdownTSX from '@/components/Dropdown/Dropdown.tsx'
 import type { MenuOption } from '@/components/Dropdown/types.ts'
-// import Message from '@/components/Message/Message.vue'
-import { createMessage } from '@/components/Message/message.ts'
+import { createMessage, destroyAll } from '@/components/Message/message.ts'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -48,9 +47,16 @@ const options: MenuOption[] = [
 ]
 
 const createMsg = () => {
-  createMessage({ message: 'msg1', offset: 10, disableEsc: true })
-  // createMessage({ message: 'msg2', offset: 20 })
-  createMessage({ message: 'msg3 not gone', duration: 0, showClose: true, offset: 30 })
+  createMessage({ message: 'msg1', offset: 10, disableEsc: true, type: 'info' })
+  createMessage({ message: 'msg2', offset: 20, type: 'success' })
+  createMessage({ message: 'msg2', offset: 20, type: 'warning' })
+  createMessage({ message: 'msg3 not gone', duration: 0, showClose: true, offset: 30, type: 'danger' })
+}
+
+const createMsg2 = () => {
+  for (let i = 0; i < 8; i++) {
+    createMessage({ message: `msg${i}`, offset: 10, duration: 0, showClose: true })
+  }
 }
 
 </script>
@@ -152,8 +158,9 @@ const createMsg = () => {
     </li>
     <li>
       <h1>Message组件</h1>
-<!--      <Message message="信息展示" :duration="0" show-close />-->
-      <Button @click="createMsg">通过函数创建message</Button>
+      <Button @click="createMsg">四种message类型</Button>
+      <Button @click="createMsg2">通过函数创建message2</Button>
+      <Button @click="destroyAll">销毁所有message</Button>
     </li>
   </ul>
 </template>

@@ -13,7 +13,6 @@ const {
   destroy,
   zIndex,
   disableEsc = false,
-  onClickClose,
   transitionName = 'fade-up',
   offset = 20, // 这里若是经过createMessage调用， 已经是计算好了总的top offset
 } = defineProps<MessageProps>()
@@ -32,11 +31,6 @@ const stopTimer = () => {
   clearTimeout(timer)
 }
 
-const clickClose = () => {
-  visible.value = false
-  if (onClickClose) onClickClose()
-}
-
 onMounted(() => {
   visible.value = true
   startTimer()
@@ -46,10 +40,6 @@ const cssStyle = computed(() => ({
   top: offset + 'px',
   zIndex,
 }))
-
-// watch(() => messageInstances.length, () => {
-//   console.log('watch:messageInstances', messageInstances)
-// })
 
 if (!disableEsc) {
   useEventListener(document, 'keydown', (e: Event) => {
@@ -70,7 +60,7 @@ if (!disableEsc) {
       v-show="visible"
       ref="messageRef"
       class="vk-message"
-      :class="{ [`vk-message-${type}`]: type}"
+      :class="{ [`vk-message--${type}`]: type}"
       :style="cssStyle"
       @mouseenter="stopTimer"
       @mouseleave="startTimer"
@@ -81,7 +71,7 @@ if (!disableEsc) {
         </slot>
       </div>
       <div v-if="showClose" class="vk-message__close">
-        <Icon icon="xmark" @click.stop="clickClose" />
+        <Icon icon="xmark" @click.stop="visible = false" />
       </div>
     </div>
   </Transition>
