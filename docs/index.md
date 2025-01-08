@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Tyler Component Project"
-  text: "A VitePress Site,.,."
+  name: "Tyler Component UI"
+  text: "封装基础组件"
   tagline: My great project tagline
   actions:
     - theme: brand
