@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Tyler Component UI"
-  text: "封装基础组件"
+  text: "封装基础组件, 还在施工中..."
   tagline: My great project tagline
   actions:
     - theme: brand
