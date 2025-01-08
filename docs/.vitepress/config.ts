@@ -6,6 +6,7 @@ import { containerPreview, componentPreview } from '@vitepress-demo-preview/plug
 export default defineConfig({
   title: 'Tyler Component Project',
   description: 'hhhhhhha',
+  base: '/my-element/',
   // srcDir: '',
   vite: {
     resolve: {
