@@ -38,7 +38,7 @@ export default defineConfig({
       {
         text: '组件',
         items: [
-          { text: '按钮 Button', link: '/components/test' }
+          { text: '按钮 Button', link: '/components/button' }
         ]
       }
     ],
