@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Tyler Component Project"
-  text: "A VitePress Site"
+  text: "A VitePress Site,.,."
   tagline: My great project tagline
   actions:
     - theme: brand
