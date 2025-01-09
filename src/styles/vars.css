@@ -91,5 +91,5 @@
   /*animation*/
   --vk-transition-duration: .3s;
   --vk-transition-duration-fast: .2s;
-
+  --vk-transition-box-shadow: .3s;
 }

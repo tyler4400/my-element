@@ -13,6 +13,7 @@ import Dropdown from '@/components/Dropdown/Dropdown.vue'
 import DropdownTSX from '@/components/Dropdown/Dropdown.tsx'
 import type { MenuOption } from '@/components/Dropdown/types.ts'
 import { createMessage, destroyAll } from '@/components/Message/message.ts'
+import Input from '@/components/Input/Input.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -58,6 +59,8 @@ const createMsg2 = () => {
     createMessage({ message: `msg${i}`, offset: 10, duration: 0, showClose: true })
   }
 }
+
+const test = ref<string>('')
 
 </script>
 
@@ -161,6 +164,26 @@ const createMsg2 = () => {
       <Button @click="createMsg">四种message类型</Button>
       <Button @click="createMsg2">通过函数创建message2</Button>
       <Button @click="destroyAll">销毁所有message</Button>
+    </li>
+    <li>
+      <h1>Input组件</h1> {{ test }}
+      <Input v-model="test" placeholder="prepend append">
+        <template #prepend>Https://</template>
+        <template #append>.com</template>
+      </Input>
+      <Input v-model="test" placeholder="prefix suffix">
+        <template #prefix>
+          <Icon icon="fa-user" />
+        </template>
+        <template #suffix>
+          <Icon icon="fa-user" />
+        </template>
+      </Input>
+      <div style="display: flex; align-items: center">
+        <Input v-model="test" placeholder="大的 Input" size="large" />
+        <Input v-model="test" placeholder="普通的 Input" />
+        <Input v-model="test" placeholder="小的 Input" size="small" />
+      </div>
     </li>
   </ul>
 </template>
