@@ -166,12 +166,13 @@ const test = ref<string>('')
       <Button @click="destroyAll">销毁所有message</Button>
     </li>
     <li>
-      <h1>Input组件</h1> {{ test }}
-      <Input v-model="test" placeholder="prepend append">
+      <h1>Input组件</h1>
+      <p>组件值 {{ test }}</p>
+      <Input v-model="test" placeholder="prepend append" clearable>
         <template #prepend>Https://</template>
         <template #append>.com</template>
       </Input>
-      <Input v-model="test" placeholder="prefix suffix">
+      <Input v-model="test" placeholder="prefix suffix" show-password>
         <template #prefix>
           <Icon icon="fa-user" />
         </template>
@@ -181,9 +182,10 @@ const test = ref<string>('')
       </Input>
       <div style="display: flex; align-items: center">
         <Input v-model="test" placeholder="大的 Input" size="large" />
-        <Input v-model="test" placeholder="普通的 Input" />
-        <Input v-model="test" placeholder="小的 Input" size="small" />
+        <Input v-model="test" placeholder="普通的 disabled" disabled />
+        <Input v-model="test" placeholder="小的 number" size="small" type="number" />
       </div>
+      <Input v-model="test" placeholder="可以是一个 Textarea" type="textarea" />
     </li>
   </ul>
 </template>
