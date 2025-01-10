@@ -12,7 +12,7 @@ description: Message 组件的文档
 
 ## 不同状态
 
-通过 **disabled** 属性指定是否禁用 input 组件
+4种message类型
 
 
 <preview path="../demo/Message/Message.vue" title="不同状态" description="Message 不同状态"></preview>

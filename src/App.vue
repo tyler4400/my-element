@@ -14,6 +14,7 @@ import DropdownTSX from '@/components/Dropdown/Dropdown.tsx'
 import type { MenuOption } from '@/components/Dropdown/types.ts'
 import { createMessage, destroyAll } from '@/components/Message/message.ts'
 import Input from '@/components/Input/Input.vue'
+import Switch from '@/components/Switch/Switch.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -62,6 +63,9 @@ const createMsg2 = () => {
 
 const test = ref<string>('')
 
+const switchTtest = ref<boolean>(false)
+const switchTest2 = ref<string>('wrong')
+
 </script>
 
 <template>
@@ -93,7 +97,7 @@ const test = ref<string>('')
       <Button size="small" icon="star">Icon</Button><br><br>
     </li>
     <li>
-      <h1>Collapse组件: <span @click="toggleAccordion">点此切换手风琴开关 {{ accordion }}</span></h1>
+      <h1>Collapse组件: <span>手风琴模式开关： <Switch model-value="accordion" active-text="on" inactive-text="off" @change="toggleAccordion" size="large" /></span></h1>
       <p>CollapseModel: {{ CollapseModel }}</p>
       <Collapse v-model="CollapseModel" :accordion="accordion" @change="values => console.log('Collapse:change', values)">
         <Item name="a">
@@ -186,6 +190,22 @@ const test = ref<string>('')
         <Input v-model="test" placeholder="小的 number" size="small" type="number" />
       </div>
       <Input v-model="test" placeholder="可以是一个 Textarea" type="textarea" />
+    </li>
+    <li>
+      <h1>Switch组件</h1>
+      <div style="width: 300px;display: flex; align-items: center; justify-content: space-between">
+        <Switch v-model="switchTtest" />
+        <Switch v-model="switchTtest" active-text="on" inactive-text="off" />
+        <Switch v-model="switchTtest" size="small" />
+        <Switch
+          v-model="switchTest2"
+          size="large"
+          active-value="right"
+          inactive-value="wrong"
+          active-text="right"
+          inactive-text="wrong"
+        />
+      </div>
     </li>
   </ul>
 </template>
