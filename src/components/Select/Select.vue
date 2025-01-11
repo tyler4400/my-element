@@ -131,6 +131,14 @@ watch(
     filteredOptions.value = newOptions
   }
 )
+watch(
+  () => props.modelValue,
+  (value) => {
+    const option = findOption(value)
+    states.inputValue = option?.label || ''
+    states.selectedOption = option
+  }
+)
 const generateFilterOptions = async (searchValue: string) => {
   if (!props.filterable) return
   if (props.filterMethod && isFunction(props.filterMethod)) {

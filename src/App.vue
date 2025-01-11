@@ -74,6 +74,12 @@ const options2 = [
   { label: 'testing', value: '3' },
   { label: 'check', value: '4', disabled: true }
 ]
+onMounted(() => {
+  setTimeout(() => {
+    createMessage({ message: 'selectTest的值变了', type: 'warning' })
+    selectTest.value = '3'
+  }, 2000)
+})
 
 </script>
 
