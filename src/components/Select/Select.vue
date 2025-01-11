@@ -104,6 +104,7 @@ const states = reactive<SelectStates>({
 })
 const isDropdownShow = ref(false)
 
+// todo 这个参数传递给tooltip是不生效的， 我的tooltip实现方式不一样的，暂时不解决
 const popperOptions: any = {
   modifiers: [
     {

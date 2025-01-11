@@ -15,7 +15,7 @@ const popperContainerNode = ref<HTMLElement>()
 
 const isOpen = ref(false)
 const setOpen = (open?: boolean) => {
-  isOpen.value = open ? open : !isOpen.value
+  isOpen.value = open !== undefined ? open : !isOpen.value
   emits('visible-change', isOpen.value)
 }
 
@@ -38,6 +38,8 @@ watch(() => trigger, (newTrigger) => {
 useClickOutside(popperContainerNode, () => {
   if (trigger === 'click' && isOpen.value) {
     setOpen(false)
+  }
+  if (isOpen.value) {
     emits('click-outside', true)
   }
 })
