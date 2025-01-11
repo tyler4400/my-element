@@ -15,6 +15,7 @@ import type { MenuOption } from '@/components/Dropdown/types.ts'
 import { createMessage, destroyAll } from '@/components/Message/message.ts'
 import Input from '@/components/Input/Input.vue'
 import Switch from '@/components/Switch/Switch.vue'
+import Select from '@/components/Select/Select.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -66,6 +67,14 @@ const test = ref<string>('')
 const switchTtest = ref<boolean>(false)
 const switchTest2 = ref<string>('wrong')
 
+const selectTest = ref('1')
+const options2 = [
+  { label: 'hello', value: '1' },
+  { label: 'xyz', value: '2' },
+  { label: 'testing', value: '3' },
+  { label: 'check', value: '4', disabled: true }
+]
+
 </script>
 
 <template>
@@ -97,7 +106,7 @@ const switchTest2 = ref<string>('wrong')
       <Button size="small" icon="star">Icon</Button><br><br>
     </li>
     <li>
-      <h1>Collapse组件: <span>手风琴模式开关： <Switch model-value="accordion" active-text="on" inactive-text="off" @change="toggleAccordion" size="large" /></span></h1>
+      <h1>Collapse组件: <span>手风琴模式开关： <Switch model-value="accordion" active-text="on" inactive-text="off" size="large" @change="toggleAccordion" /></span></h1>
       <p>CollapseModel: {{ CollapseModel }}</p>
       <Collapse v-model="CollapseModel" :accordion="accordion" @change="values => console.log('Collapse:change', values)">
         <Item name="a">
@@ -206,6 +215,10 @@ const switchTest2 = ref<string>('wrong')
           inactive-text="wrong"
         />
       </div>
+    </li>
+    <li>
+      <h1>Select组件</h1><span>选择值：{{ test }}</span>
+      <Select v-model="selectTest" placeholder="基础选择器，请选择" :options="options2" />
     </li>
   </ul>
 </template>

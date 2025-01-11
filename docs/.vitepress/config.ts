@@ -42,7 +42,8 @@ export default defineConfig({
           { text: '按钮 Button', link: '/components/button' },
           { text: '输入 Input', link: '/components/input' },
           { text: '消息 Message', link: '/components/message' },
-          { text: '开关 switch', link: '/components/switch' },
+          { text: '开关 Switch', link: '/components/switch' },
+          { text: '选择器 Select', link: '/components/select' },
         ]
       }
     ],
