@@ -50,6 +50,7 @@ export default defineConfig({
           { text: '消息 Message', link: '/components/message' },
           { text: '开关 Switch', link: '/components/switch' },
           { text: '选择器 Select', link: '/components/select' },
+          { text: '表单 Form', link: '/components/form' },
         ]
       }
     ],

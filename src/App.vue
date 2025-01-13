@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
-import { h, onMounted, ref } from 'vue'
+import { h, onMounted, reactive, ref } from 'vue'
 import type { ButtonInstance } from '@/components/Button/types.ts'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import Item from '@/components/Collapse/CollapseItem.vue'
@@ -16,6 +16,9 @@ import { createMessage, destroyAll } from '@/components/Message/message.ts'
 import Input from '@/components/Input/Input.vue'
 import Switch from '@/components/Switch/Switch.vue'
 import Select from '@/components/Select/Select.vue'
+import Form from '@/components/Form/Form.vue'
+import FormItem from '@/components/Form/FormItem.vue'
+import type { FormRules } from '@/components/Form/types.ts'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -74,6 +77,40 @@ const options2 = [
   { label: 'testing', value: '3' },
   { label: 'check', value: '4', disabled: true }
 ]
+
+const formRef = ref()
+const model = reactive({
+  email: '123',
+  name: 'jack',
+  password: '',
+  confirmPwd: ''
+})
+const rules: FormRules = {
+  email: [{ type: 'email', required: true, trigger: 'blur' }],
+  password: [{ type: 'string', required: true, trigger: 'blur', min: 3, max: 5 }],
+  name: [{ type: 'string', required: true, trigger: 'input', min: 3, max: 5 }],
+  confirmPwd: [
+    { type: 'string', required: true, trigger: 'blur' },
+    {
+      validator: (rule, value) => value === model.password,
+      trigger: 'blur',
+      message: '两个密码必须相同'
+    }
+  ]
+}
+
+const submit = async () => {
+  try {
+    await formRef.value.validate()
+    console.log('passed!')
+  } catch (e) {
+    console.log('the error', e)
+  }
+}
+const reset = () => {
+  formRef.value.resetFields()
+}
+
 onMounted(() => {
   setTimeout(() => {
     createMessage({ message: 'selectTest的值变了', type: 'warning' })
@@ -225,6 +262,37 @@ onMounted(() => {
     <li>
       <h1>Select组件</h1><span>选择值：{{ test }}</span>
       <Select v-model="selectTest" placeholder="基础选择器，请选择" :options="options2" />
+    </li>
+    <li>
+      <h1>Form组件</h1>
+      <div>
+        <Form ref="formRef" :model="model" :rules="rules">
+          <FormItem label="the email" prop="email">
+            <Input v-model="model.email" />
+          </FormItem>
+          <FormItem label="the password" prop="password">
+            <template #label="{label}">
+              <Button type="info">{{ label }}</Button>
+            </template>
+            <Input v-model="model.password" type="password" />
+          </FormItem>
+          <FormItem prop="confirmPwd" label="confirm password">
+            <Input v-model="model.confirmPwd" type="password" />
+          </FormItem>
+          <FormItem prop="name" label="name">
+            <template #default="{validate}">
+              <input v-model="model.name" type="string" @blur="validate()">
+            </template>
+          </FormItem>
+          <div :style="{ textAlign: 'center' }">
+            <Button type="primary" @click.prevent="submit">Submit</Button>
+            <Button @click.prevent="reset">Reset</Button>
+          </div>
+        </Form>
+        <p>form value:</p>
+
+        <pre>{{ model }}</pre>
+      </div>
     </li>
   </ul>
 </template>

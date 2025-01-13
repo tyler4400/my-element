@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { InputEmits, InputProps, InputSlots } from '@/components/Input/types.ts'
-import { computed, ref, useAttrs } from 'vue'
+import { computed, ref, useAttrs, inject } from 'vue'
 import Icon from '@/components/Icon/Icon.vue'
+import { formItemContextKey } from "@/components/Form/types.ts";
 
 defineOptions({
   name: 'VKInput',
@@ -20,12 +21,20 @@ const { type = 'text', autocomplete = 'off', clearable, disabled, showPassword }
 
 const innerValue = defineModel<InputProps['modalValue']>()
 
+/* 可能的表单校验 */
+const formItemContext = inject(formItemContextKey)
+const runValidation = (trigger: string) => {
+  formItemContext?.validate?.(trigger).catch((e: any) => console.log(e.errors))
+}
+
 /* 事件 */
 const handleInput = () => {
   emits('input', innerValue.value as InputProps['modalValue']) // 这里不知道为什么类型报错， 明明是一样的
+  runValidation('input')
 }
 const handleChange = () => {
   emits('change', innerValue.value as InputProps['modalValue'])
+  runValidation('change')
 }
 const isFocus = ref(false)
 const handleFocus = (event: FocusEvent) => {
@@ -35,6 +44,7 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   console.log('blur triggered')
   isFocus.value = false
+  runValidation('blur')
   emits('blur', event)
 }
 
