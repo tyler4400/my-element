@@ -324,7 +324,7 @@ const defaultFileList: UploadFile[] = [
         :on-success="(data, file) => console.log('on-success', data, file)"
         :on-error="(error, file) => console.log('on-error', error, file)"
       />
-      <h2>拖动上传1</h2>
+      <h2>拖动上传</h2>
       <Upload
         action="https://mock.mengxuegu.com/mock/67853e8f8ee02010dd5e262e/example/upload"
         multiple
@@ -333,7 +333,7 @@ const defaultFileList: UploadFile[] = [
       >
         <p>点击或者拖拽上传</p>
       </Upload>
-      <h2>自定义触发slot</h2>
+      <h2>自定义slot</h2>
       <Upload
         action="https://mock.mengxuegu.com/mock/67853e8f8ee02010dd5e262e/example/upload"
         multiple
