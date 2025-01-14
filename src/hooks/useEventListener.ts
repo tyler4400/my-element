@@ -1,23 +1,23 @@
 import { type Ref, isRef, watch, onMounted, onBeforeUnmount, unref } from 'vue'
 
-const useEventListener  = (
+const useEventListener  = <T extends Event>(
   target: EventTarget | Ref<EventTarget | null>,
   event: string,
-  handler: (e: Event) => void
+  handler: (e: T) => void
 ) => {
   if (isRef(target)) {
     watch(target, (value, oldValue) => {
-      oldValue?.removeEventListener(event, handler)
-      value?.addEventListener(event, handler)
+      oldValue?.removeEventListener(event, handler as EventListener)
+      value?.addEventListener(event, handler as EventListener)
     })
   } else {
     onMounted(() => {
-      target.addEventListener(event, handler)
+      target.addEventListener(event, handler as EventListener)
     })
   }
 
   onBeforeUnmount(() => {
-    unref(target)?.removeEventListener(event, handler)
+    unref(target)?.removeEventListener(event, handler as EventListener)
   })
 }
 

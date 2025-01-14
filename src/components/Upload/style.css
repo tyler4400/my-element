@@ -1,0 +1,59 @@
+.vk-upload-list {
+  --vk-popover-bg-color: var(--vk-bg-color-overlay);
+  --vk-file-name-error-color: var(--vk-color-danger);
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.vk-upload-list__item {
+  transition: all .5s cubic-bezier(.55,0,.1,1);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  min-width: 200px;
+  position: relative;
+  &:first-child {
+    margin-top: 10px;
+  }
+  .vk-file-name {
+    margin-left: 5px;
+    margin-right: 40px;
+    svg {
+      margin-right: 5px;
+      color: #adb5bd;
+    }
+  }
+  .file-name-error {
+    color: var(--vk-file-name-error-color);
+    svg {
+      color: var(--vk-file-name-error-color);
+    }
+  }
+  .vk-file-status {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    line-height: inherit;
+  }
+  .vk-file-action {
+    display: none;
+    position: absolute;
+    right: 7px;
+    top: 0;
+    line-height: inherit;
+    cursor: pointer;
+  }
+  &:hover {
+    background-color: #e9ecef;
+    .vk-file-status {
+      display: none;
+    }
+    .vk-file-action {
+      display: block;
+    }
+  }
+}

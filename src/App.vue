@@ -20,6 +20,7 @@ import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import type { FormRules } from '@/components/Form/types.ts'
 import Upload from '@/components/Upload/Upload.vue'
+import type { UploadFile } from '@/components/Upload/types.ts'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -118,17 +119,22 @@ const reset = () => {
   formRef.value.resetFields()
 }
 
-const checkFileSize = (file: File) => {
-  if (Math.round(file.size / 1024) > 50) {
-    createMessage({ message: 'size is too large', type: 'warning' })
-    return false
-  }
-  return true
-}
-const filePromise = (file: File) => {
-  const newFile = new File([file], 'new_name.docx', {type: file.type})
-  return Promise.resolve(newFile)
-}
+// const checkFileSize = (file: File) => {
+//   if (Math.round(file.size / 1024) > 50) {
+//     createMessage({ message: 'size is too large', type: 'warning' })
+//     return false
+//   }
+//   return true
+// }
+// const filePromise = (file: File) => {
+//   const newFile = new File([file], 'new_name.docx', {type: file.type})
+//   return Promise.resolve(newFile)
+// }
+const defaultFileList: UploadFile[] = [
+  { uid: '123', size: 1234, name: 'hello.md', status: 'uploading', percent: 30 },
+  { uid: '122', size: 1234, name: 'xyz.md', status: 'success', percent: 30 },
+  { uid: '121', size: 1234, name: 'eyiha.md', status: 'error', percent: 30 }
+]
 
 
 </script>
@@ -283,9 +289,9 @@ const filePromise = (file: File) => {
           <FormItem label="the email" prop="email">
             <Input v-model="model.email" />
           </FormItem>
-          <FormItem label="the password" prop="password">
+          <FormItem label="password" prop="password">
             <template #label="{label}">
-              <Button type="info">{{ label }}</Button>
+              {{ label }} <Icon icon="key" type="primary" />
             </template>
             <Input v-model="model.password" type="password" />
           </FormItem>
@@ -310,12 +316,35 @@ const filePromise = (file: File) => {
     <li>
       <h1>Upload组件</h1><span />
       <Upload
+        :default-file-list="defaultFileList"
         action="https://mock.mengxuegu.com/mock/67853e8f8ee02010dd5e262e/example/upload"
+        multiple
+        :data="{hhhha: '123'}"
         :on-progress="(percentage, file) => console.log('on-progress', percentage, file)"
         :on-success="(data, file) => console.log('on-success', data, file)"
         :on-error="(error, file) => console.log('on-error', error, file)"
-        :before-upload="filePromise"
       />
+      <h2>拖动上传1</h2>
+      <Upload
+        action="https://mock.mengxuegu.com/mock/67853e8f8ee02010dd5e262e/example/upload"
+        multiple
+        :data="{hhhha: '123'}"
+        drag
+      >
+        <p>点击或者拖拽上传</p>
+      </Upload>
+      <h2>自定义触发slot</h2>
+      <Upload
+        action="https://mock.mengxuegu.com/mock/67853e8f8ee02010dd5e262e/example/upload"
+        multiple
+        :data="{hhhha: '123'}"
+      >
+        <template #default="{ handle }">
+          <div style="border: 1px solid #79bbff" @click="handle">
+            <Icon icon="upload" type="primary" /><span>点此上传</span>
+          </div>
+        </template>
+      </Upload>
     </li>
   </ul>
   <div style="height: 300px" />

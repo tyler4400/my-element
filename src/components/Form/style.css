@@ -43,7 +43,7 @@
 .vk-form-item.is-success .vk-input__wrapper {
   box-shadow: 0 0 0 1px var(--vk-color-success) inset;
 }
-.vk-form-item.is-required > .vk-form-item__label::before {
+.vk-form-item.is-required > .vk-form-item__label::after {
   content: '*';
   color: var(--vk-color-danger);
   margin-right: 4px;

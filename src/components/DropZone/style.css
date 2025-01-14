@@ -1,0 +1,18 @@
+.vk-dropzone {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 20px;
+  width: 360px;
+  height: 180px;
+  text-align: center;
+  &:hover {
+    border: 2px dashed var(--vk-color-primary);
+  }
+  &.is-dragover {
+    border: 2px dashed var(--vk-color-primary);
+    background: rgba(var(--vk-color-primary), .2);
+  }
+}
