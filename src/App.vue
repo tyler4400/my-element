@@ -19,10 +19,11 @@ import Select from '@/components/Select/Select.vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import type { FormRules } from '@/components/Form/types.ts'
+import Upload from '@/components/Upload/Upload.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
-  console.log('buttonRef', buttonRef.value?.ref)
+  console.log('buttonRef', buttonRef.value?.buttonEl)
 
 })
 
@@ -77,6 +78,12 @@ const options2 = [
   { label: 'testing', value: '3' },
   { label: 'check', value: '4', disabled: true }
 ]
+onMounted(() => {
+  setTimeout(() => {
+    createMessage({ message: 'selectTest的值变了', type: 'warning' })
+    selectTest.value = '3'
+  }, 2000)
+})
 
 const formRef = ref()
 const model = reactive({
@@ -111,12 +118,18 @@ const reset = () => {
   formRef.value.resetFields()
 }
 
-onMounted(() => {
-  setTimeout(() => {
-    createMessage({ message: 'selectTest的值变了', type: 'warning' })
-    selectTest.value = '3'
-  }, 2000)
-})
+const checkFileSize = (file: File) => {
+  if (Math.round(file.size / 1024) > 50) {
+    createMessage({ message: 'size is too large', type: 'warning' })
+    return false
+  }
+  return true
+}
+const filePromise = (file: File) => {
+  const newFile = new File([file], 'new_name.docx', {type: file.type})
+  return Promise.resolve(newFile)
+}
+
 
 </script>
 
@@ -294,7 +307,18 @@ onMounted(() => {
         <pre>{{ model }}</pre>
       </div>
     </li>
+    <li>
+      <h1>Upload组件</h1><span />
+      <Upload
+        action="https://mock.mengxuegu.com/mock/67853e8f8ee02010dd5e262e/example/upload"
+        :on-progress="(percentage, file) => console.log('on-progress', percentage, file)"
+        :on-success="(data, file) => console.log('on-success', data, file)"
+        :on-error="(error, file) => console.log('on-error', error, file)"
+        :before-upload="filePromise"
+      />
+    </li>
   </ul>
+  <div style="height: 300px" />
 </template>
 
 <style scoped>

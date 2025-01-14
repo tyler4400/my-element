@@ -2,15 +2,13 @@
 import type { InputEmits, InputProps, InputSlots } from '@/components/Input/types.ts'
 import { computed, ref, useAttrs, inject } from 'vue'
 import Icon from '@/components/Icon/Icon.vue'
-import { formItemContextKey } from "@/components/Form/types.ts";
+// import { formItemContextKey } from "@/components/Form/types.ts";
 
 defineOptions({
   name: 'VKInput',
   inheritAttrs: false,
 })
 const slots = defineSlots<InputSlots>()
-console.log('slots', slots)
-console.log('prepend', slots.prepend)
 
 const emits = defineEmits<InputEmits>()
 
@@ -22,9 +20,9 @@ const { type = 'text', autocomplete = 'off', clearable, disabled, showPassword }
 const innerValue = defineModel<InputProps['modalValue']>()
 
 /* 可能的表单校验 */
-const formItemContext = inject(formItemContextKey)
+// const formItemContext = inject(formItemContextKey)
 const runValidation = (trigger: string) => {
-  formItemContext?.validate?.(trigger).catch((e: any) => console.log(e.errors))
+  // formItemContext?.validate?.(trigger).catch((e: any) => console.log(e.errors))
 }
 
 /* 事件 */

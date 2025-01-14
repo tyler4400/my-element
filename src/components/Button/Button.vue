@@ -13,7 +13,7 @@ withDefaults(defineProps<ButtonProps>(), {
 
 const _refButton = ref<HTMLButtonElement>()
 defineExpose({
-  ref: _refButton,
+  buttonEl: _refButton,
 })
 
 </script>

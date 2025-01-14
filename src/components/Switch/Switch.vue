@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, watch, useModel } from 'vue'
+import { computed, onMounted, watch, useModel, useTemplateRef } from 'vue'
 import type { SwtichProps, SwtichEmits } from './types'
 
 defineOptions({
@@ -42,9 +42,13 @@ const props = withDefaults(defineProps<SwtichProps>(), {
 })
 const emits = defineEmits<SwtichEmits>()
 
-const innerValue = useModel(props, 'modelValue') // 这里更好是用defineModal, 为了学习我们多种情况都写一写
+// 这里更好是用defineModal, 为了学习我们多种情况都写一写
 // const innerValue = ref(props.modelValue)
-const inputEl = ref<HTMLInputElement>()
+const innerValue = useModel(props, 'modelValue')
+
+// useTemplateRef 为3.5新增， 支持自动推断出类型，不用显式的写类型
+// const inputEl = ref<HTMLInputElement>()
+const inputEl = useTemplateRef('inputEl')
 // 现在是否被选中
 const checked = computed(() => innerValue.value === props.activeValue)
 const switchValue = () => {

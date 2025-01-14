@@ -16,5 +16,5 @@ export interface ButtonProps {
 }
 
 export interface ButtonInstance {
-	ref: HTMLButtonElement
+	buttonEl: HTMLButtonElement
 }
