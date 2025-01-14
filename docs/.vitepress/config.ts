@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { fileURLToPath, URL } from 'node:url'
 import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -13,7 +14,10 @@ export default defineConfig({
       alias: {
         '@': fileURLToPath(new URL('../../src', import.meta.url))
       }
-    }
+    },
+    plugins: [
+      vueJsx(),
+    ]
   },
   markdown: {
     config(md) {
