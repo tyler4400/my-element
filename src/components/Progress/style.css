@@ -1,0 +1,48 @@
+.vk-progress-bar {
+  --vk-progress-font-size: var(--vk-font-size-base);
+  --vk-progress-bg: #e9ecef;
+  --vk-progress-border-radius: .25rem;
+  --vk-progress-bar-color: #fff;
+  --vk-progress-bar-transition: width .6s ease;
+  width: 100%;
+  box-sizing: border-box;
+  .vk-progress-bar-outer {
+    border-radius: var(--vk-progress-border-radius);
+    background-color: var(--vk-progress-bg);
+    overflow: hidden;
+    position: relative;
+  }
+  .vk-progress-bar-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    border-radius: var(--vk-progress-border-radius);
+    line-height: 1;
+    transition: var(--vk-progress-bar-transition);
+    .vk-inner-text {
+      color: var(--vk-progress-bar-color);
+      font-size: var(--vk-progress-font-size);
+      margin: 0 5px;
+    }
+    &.vk-color-primary {
+      background-color: var(--vk-color-primary);
+    }
+    &.vk-color-info {
+      background-color: var(--vk-color-info);
+    }
+    &.vk-color-success {
+      background-color: var(--vk-color-success);
+    }
+    &.vk-color-warning {
+      background-color: var(--vk-color-warning);
+    }
+    &.vk-color-danger {
+      background-color: var(--vk-color-danger);
+    }
+  }
+
+}
