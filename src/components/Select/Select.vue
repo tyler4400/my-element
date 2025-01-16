@@ -148,6 +148,7 @@ const generateFilterOptions = async (searchValue: string) => {
     try {
       filteredOptions.value = await props.remoteMethod(searchValue)
     } catch (error) {
+      console.error(error)
       filteredOptions.value = []
     } finally {
       states.loading = false

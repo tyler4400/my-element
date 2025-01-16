@@ -22,7 +22,7 @@ const innerValue = defineModel<InputProps['modalValue']>()
 /* 可能的表单校验 */
 // const formItemContext = inject(formItemContextKey)
 // const runValidation = (trigger: string) => {
-  // formItemContext?.validate?.(trigger).catch((e: any) => console.log(e.errors))
+// formItemContext?.validate?.(trigger).catch((e: any) => console.log(e.errors))
 // }
 
 /* 事件 */
