@@ -1,13 +1,32 @@
 {
-  "name": "my-element",
-  "version": "0.0.0",
+  "name": "tyler-element",
+  "description": "仿elementUI的学习项目，提供一些基础组件",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": ["./dist/es/tyler-element.css", "./dist/umd/tyler-element.css"],
+  "types": "./dist/types/index.d.ts",
+  "main": "./dist/tyler-element.umd.cjs",
+  "module": "./dist/tyler-element.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/es/tyler-element.js",
+      "require": "./dist/umd/tyler-element.umd.cjs"
+    },
+    "./style.css": "./dist/es/tyler-element.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build-theck": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
+    "build": "run-p build-es build-umd",
+    "build-es": "vite build --config vite.es.config.ts",
+    "build-umd": "vite build --config vite.umd.config.ts",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "docs:dev": "vitepress dev docs",
@@ -22,7 +41,9 @@
     "@vue/test-utils": "^2.4.6",
     "async-validator": "^4.2.5",
     "axios": "^1.7.9",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "peerDependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -41,10 +62,12 @@
     "npm-run-all2": "^7.0.2",
     "typescript": "~5.6.3",
     "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.5.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-vue-devtools": "^7.6.8",
     "vitepress": "^1.5.0",
     "vitest": "^2.1.8",
+    "vue": "^3.5.13",
     "vue-tsc": "^2.1.10"
   }
 }

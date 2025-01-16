@@ -1,5 +1,7 @@
 import type { App } from 'vue'
 
+import './styles/index.css'
+
 import Button from '@/components/Button'
 import Collapse, { CollapseItem } from '@/components/Collapse'
 import Dropdown from '@/components/Dropdown'
@@ -13,6 +15,10 @@ import Tooltip from '@/components/Tooltip'
 import Upload, { UploadList } from '@/components/Upload'
 import DropZone from '@/components/DropZone'
 import ProgressPlugin, { Progress } from '@/components/Progress'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 const components = [
   Button,
