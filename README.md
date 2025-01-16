@@ -1,39 +1,58 @@
-# my-element
+# tyler-element
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+**tyler-element** 是为慕课网打造的一套教学组件库，使用最新的 Vue3.3 和 TS， 意在让大家从零到一，由浅入深的提高自己的 Vue 和 typescript 水平，地址： [https://coding.imooc.com/class/693.html](https://coding.imooc.com/class/693.html)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### 安装
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm i tyler-element --save
 ```
 
-### Compile and Hot-Reload for Development
+### 开始使用
 
-```sh
-npm run dev
+**全局使用**
+
+```js
+// 引入所有组件
+import Tlement from 'tyler-element'
+// 引入样式
+import 'tyler-element/style.css'
+
+import App from './App.vue'
+// 全局使用
+createApp(App).use(Tlement).mount('#app')
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
+```vue
+<template>
+  <vk-button>我是 VkButton</vk-button>
+</template>
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+**单个导入**
 
-```sh
-npm run lint
+tyler-Element 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
+
+```vue
+<template>
+  <Button>我是 VkButton</Button>
+</template>
+<script>
+import { Button } from 'tyler-element'
+export default {
+  components: { Button }
+}
+</script>
 ```
+
+### 课程亮点
+
+- 亮点1 🔥：“稀有”，目前上市面没有类似的高级课程，由浅入深的高仿 Element-Plus 完成组件库开发的全流程。
+- 亮点2 💧: “专业”，传授大厂前端项目架构设计思想/开发模式/代码规范/流程，不搞小作坊式代码。
+- 亮点3 ⛑️: “全”，精选十几个组件，可以涵盖大部分的主流组件的设计思想以及原理，知识覆盖面全。
+- 亮点4 📚：“新”，使用目前2023年 Vue3 周边最新 ，最全技术：Vue3.2 + Typescript4， Vite，Vitest， Vitepress，Vue-test-utils2，Rollup, Postcss 一网打尽。
+- 亮点5 🎉：“难”，难度逐渐上升，高薪必备敲门砖，包括：Message - Select - Form 这种高难度高复杂组件。
+- 亮点6 🌹：单元测试，被常年忽略但是非常重要的内容，简历加分项，使用最新的 Vitest，Vue-test-utils2 完成单元测试。
+- 亮点7 📚: 文档生成工具，组件库打包和发布以及其他周边流程应有尽有，提供一揽子解决方案。
+- 亮点8 📦: 长期维护以及更新，会根据同学的反馈每年更新几个高频组件。

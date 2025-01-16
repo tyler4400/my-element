@@ -1,8 +1,12 @@
 {
   "name": "tyler-element",
   "description": "仿elementUI的学习项目，提供一些基础组件",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.3",
+  "author": "tyler Zheng",
+  "license": "MIT",
+  "keywords": ["VUE3", "Component", "UI"],
+  "homepage": "https://github.com/tyler4400",
+  "repository": "https://github.com/tyler4400/my-element",
   "type": "module",
   "files": [
     "dist"
@@ -31,7 +35,8 @@
     "lint": "eslint . --fix",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.5",

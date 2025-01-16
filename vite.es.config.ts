@@ -13,8 +13,11 @@ export default defineConfig({
     vue(),
     vueJsx(),
     dts({
-      tsconfigPath: './tsconfig.build.json',
+      tsconfigPath: './tsconfig.app.json',
+      rollupTypes: true,
       outDir: 'dist/types',
+      'include': ['src/index.ts', 'src/components/**/*', 'src/hooks/**/*.vue'],
+      'exclude': ['src/**/*.test.*'],
     }),
   ],
   resolve: {
@@ -27,13 +30,13 @@ export default defineConfig({
     sourcemap: true,
     // 开启库模式打包
     lib: {
-      entry: resolve(__dirname, './src/index.ts'),
+      entry: resolve(__dirname, './src/index.ts'), // 组件编译时的入口文件
       name: 'tyler-element',
-      fileName: 'tyler-element',
+      fileName: 'tyler-element', // build打包后生成的dist文件夹中的文件名
       formats: ['es']
     },
     rollupOptions: {
-      external: [
+      external: [ // 打包过程中不会对这些外部模块进行打包，而是从外部直接加载
         'vue',
         '@floating-ui/vue',
         '@fortawesome/fontawesome-svg-core',
