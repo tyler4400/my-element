@@ -41,7 +41,6 @@ const fileList = reactive<UploadFile[]>(defaultFileList)
 const updateFileList = (file: UploadFile, updateObj: Partial<UploadFile>) => {
   const index = fileList.findIndex(item => item.uid === file.uid)
   fileList.splice(index, 1, { ...fileList[index], ...updateObj })
-  console.log('updateFileList', fileList)
 }
 const handleRemove = (file: UploadFile) => {
   const index = fileList.findIndex(item => item.uid === file.uid)
@@ -50,7 +49,6 @@ const handleRemove = (file: UploadFile) => {
 }
 
 const handleFileChange = (e: Event) => {
-  console.log('handleFileChange', e)
   const fileInput = e.target as HTMLInputElement
   const files = fileInput.files
   if (!files || !files.length) return
@@ -98,7 +96,6 @@ const postFile = (file: File) => {
     headers: { ...headers, 'Content-Type': 'multipart/form-data' },
     withCredentials,
     onUploadProgress: (event: AxiosProgressEvent) => {
-      console.log('upload progress', event)
       if (event.total) {
         const percentage = Math.round((event.loaded / event.total) * 100)
         if (percentage < 100) {
@@ -108,12 +105,10 @@ const postFile = (file: File) => {
       }
     }
   }).then(response => {
-    console.log('upload response', response)
     updateFileList(_file, {status: 'success', response: response.data, percent: 100 })
     onSuccess?.(response.data, file)
     onChange?.(file)
   }).catch(error => {
-    console.error('upload error', error)
     updateFileList(_file, { status: 'error', error })
     onError?.(error, file)
     onChange?.(file)

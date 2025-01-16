@@ -115,7 +115,6 @@ const validate = async (trigger?: string) => {
         validateStatus.state = 'error'
         // validateStatus.errorMsg = errors && errors.length ? errors[0].message || '' : ''
         validateStatus.errorMsg = errors?.[0]?.message || ''
-        console.log(e.errors)
         return Promise.reject(e)
       })
       .finally(() => {

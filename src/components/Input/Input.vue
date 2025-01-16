@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InputEmits, InputProps, InputSlots } from '@/components/Input/types.ts'
-import { computed, ref, useAttrs, inject } from 'vue'
+import { computed, ref, useAttrs } from 'vue'
 import Icon from '@/components/Icon/Icon.vue'
 // import { formItemContextKey } from "@/components/Form/types.ts";
 
@@ -21,18 +21,18 @@ const innerValue = defineModel<InputProps['modalValue']>()
 
 /* 可能的表单校验 */
 // const formItemContext = inject(formItemContextKey)
-const runValidation = (trigger: string) => {
+// const runValidation = (trigger: string) => {
   // formItemContext?.validate?.(trigger).catch((e: any) => console.log(e.errors))
-}
+// }
 
 /* 事件 */
 const handleInput = () => {
   emits('input', innerValue.value as string | number)
-  runValidation('input')
+  // runValidation('input')
 }
 const handleChange = () => {
   emits('change', innerValue.value as string | number)
-  runValidation('change')
+  // runValidation('change')
 }
 const isFocus = ref(false)
 const handleFocus = (event: FocusEvent) => {
@@ -40,9 +40,8 @@ const handleFocus = (event: FocusEvent) => {
   emits('focus', event)
 }
 const handleBlur = (event: FocusEvent) => {
-  console.log('blur triggered')
   isFocus.value = false
-  runValidation('blur')
+  // runValidation('blur')
   emits('blur', event)
 }
 
@@ -54,7 +53,6 @@ const showClear = computed(() =>
     isFocus.value
 )
 const clear = () => {
-  console.log('clear triggered')
   innerValue.value = ''
   emits('clear')
   emits('input', '')

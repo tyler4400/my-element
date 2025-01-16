@@ -12,7 +12,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('../../src', import.meta.url))
+        '@': fileURLToPath(new URL('../../src', import.meta.url)) // 这里不知道 为什么报错， 不影响不管了
       }
     },
     plugins: [
