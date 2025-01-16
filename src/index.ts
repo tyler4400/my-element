@@ -12,7 +12,7 @@ import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
 import Upload, { UploadList } from '@/components/Upload'
 import DropZone from '@/components/DropZone'
-import { Progress } from '@/components/Progress'
+import ProgressPlugin, { Progress } from '@/components/Progress'
 
 const components = [
   Button,
@@ -30,7 +30,7 @@ const components = [
   Upload,
   UploadList,
   DropZone,
-  Progress,
+  ProgressPlugin,
 ]
 
 const install = (app: App) => {

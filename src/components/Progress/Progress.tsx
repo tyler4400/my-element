@@ -23,7 +23,6 @@ const Progress: FunctionalComponent<ProgressProps> = (props: ProgressProps) => {
   )
 }
 
-// suppress
-Progress.name = 'VKProgress'
+// Progress.name = 'VKProgress'
 
 export default Progress
