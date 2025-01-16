@@ -20,10 +20,10 @@ const {
 const visible = ref<boolean>(true)
 const messageRef = ref<HTMLDivElement>()
 
-let timer: NodeJS.Timeout
+let timer: number
 const startTimer = () => {
   if (duration === 0) return
-  timer = setTimeout(() => {
+  timer = window.setTimeout(() => {
     visible.value = false
   }, duration)
 }

@@ -61,7 +61,7 @@ export const createMessage = (props: CreateMessageProps) => {
 }
 
 const getLastInstance = () => {
-  return messageInstances.at(-1)
+  return messageInstances[messageInstances.length - 1]
 }
 
 // 获取上一个组件的 底部偏移量. 参数是当前组件的ID
