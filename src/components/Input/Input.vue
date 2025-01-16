@@ -27,11 +27,11 @@ const runValidation = (trigger: string) => {
 
 /* 事件 */
 const handleInput = () => {
-  emits('input', innerValue.value as InputProps['modalValue']) // 这里不知道为什么类型报错， 明明是一样的
+  emits('input', innerValue.value as string | number)
   runValidation('input')
 }
 const handleChange = () => {
-  emits('change', innerValue.value as InputProps['modalValue'])
+  emits('change', innerValue.value as string | number)
   runValidation('change')
 }
 const isFocus = ref(false)
