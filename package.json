@@ -13,8 +13,8 @@
   ],
   "sideEffects": ["./dist/es/tyler-element.css", "./dist/umd/tyler-element.css"],
   "types": "./dist/types/index.d.ts",
-  "main": "./dist/tyler-element.umd.cjs",
-  "module": "./dist/tyler-element.js",
+  "main": "./dist/umd/tyler-element.umd.cjs",
+  "module": "./dist/es/tyler-element.js",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
