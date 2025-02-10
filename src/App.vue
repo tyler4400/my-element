@@ -21,6 +21,8 @@ import FormItem from '@/components/Form/FormItem.vue'
 import type { FormRules } from '@/components/Form/types.ts'
 import Upload from '@/components/Upload/Upload.vue'
 import type { UploadFile } from '@/components/Upload/types.ts'
+import BigFileUpload from '@/example/big-file-upload/index.vue'
+
 
 const buttonRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -140,6 +142,12 @@ const defaultFileList: UploadFile[] = [
 </script>
 
 <template>
+  <div>
+    <h1>大文件上传</h1>
+    <BigFileUpload />
+    <br>
+  </div>
+
   <header>
     <h1>组件展示</h1>
   </header>
