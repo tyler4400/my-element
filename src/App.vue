@@ -298,8 +298,8 @@ const defaultFileList: UploadFile[] = [
             <Input v-model="model.email" />
           </FormItem>
           <FormItem label="password" prop="password">
-            <template #label="{label}">
-              {{ label }} <Icon icon="key" type="primary" />
+            <template #label="slotProps">
+              {{ slotProps.label }} <Icon icon="key" type="primary" />
             </template>
             <Input v-model="model.password" type="password" />
           </FormItem>
