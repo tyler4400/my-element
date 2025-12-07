@@ -6,8 +6,10 @@ const useEventListener  = <T extends Event>(
   handler: (e: T) => void
 ) => {
   if (isRef(target)) {
-    watch(target, (value, oldValue) => {
-      oldValue?.removeEventListener(event, handler as EventListener)
+    watch(target, (value, oldValue, onCleanup) => {
+      onCleanup(() => {
+        oldValue?.removeEventListener(event, handler as EventListener)
+      })
       value?.addEventListener(event, handler as EventListener)
     })
   } else {
